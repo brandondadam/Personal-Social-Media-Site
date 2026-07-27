@@ -1,0 +1,32 @@
+---
+layout: base.njk
+---
+<div class="post-header">
+  <a class="back-link" href="/">
+    <img src="/assets/icons/back-arrow.svg" alt="Back Arrow">
+    Back
+  </a>
+</div>
+
+<div class="post-scroll">
+  {% if images %}
+    <div style="padding: 0 24px;">
+      <img src="{{ images[0] }}" alt="" loading="lazy" style="width:100%;border-radius:16px;margin-top:16px;aspect-ratio:514/342;object-fit:cover;display:block;">
+    </div>
+  {% endif %}
+
+  <div class="post-full">
+    <div class="post-full-meta">
+      {% set displayTags = tags | reject("equalsto", "posts") | list %}
+      {% for tag in displayTags %}
+        <div class="tag"><span>{{ tag | upper }}</span></div>
+      {% endfor %}
+      <span class="post-date">{{ page.date | shortDate }}</span>
+      {% if readTime %}<span>·</span><span>{{ readTime }} min read</span>{% endif %}
+    </div>
+    <h1 class="post-full-title">{{ title }}</h1>
+    <div class="post-full-content">
+      {{ content | safe }}
+    </div>
+  </div>
+</div>

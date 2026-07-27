@@ -1,0 +1,13 @@
+{
+  "name": "personal-blog",
+  "version": "1.0.0",
+  "description": "Personal blog with Twitter-style feed, powered by 11ty",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "dotenv": "^17.4.2"
+  }
+}

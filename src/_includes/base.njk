@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or "Home" }} — {{ author.name }}</title>
+
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/images/webclip.png">
+
+  <meta property="og:title" content="{{ title or 'Home' }} — {{ author.name }}">
+  <meta property="og:description" content="{{ description or 'No social media. Never really cared for it. So you can find me here instead...' }}">
+  <meta property="og:image" content="/assets/images/og-meta.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title or 'Home' }} — {{ author.name }}">
+  <meta name="twitter:description" content="{{ description or 'No social media. Never really cared for it. So you can find me here instead...' }}">
+  <meta name="twitter:image" content="/assets/images/og-meta.jpg">
+
+  <link rel="preload" href="/assets/fonts/OffBit-101Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/InstrumentSans-VariableFont_wdth,wght.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+  <div class="layout">
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+
+        <a class="logo" href="/">
+          <img src="/assets/icons/logo.svg" alt="Logo" width="24" height="24">
+        </a>
+
+        <a class="nav-item {% if page.url == '/' %}active{% endif %}" href="/">
+          <img class="nav-icon" src="/assets/icons/home.svg" alt="">
+          <span>Home</span>
+        </a>
+
+        <a class="nav-item {% if page.url == '/about/' %}active{% endif %}" href="/about/">
+          <img class="nav-icon" src="/assets/icons/about.svg" alt="">
+          <span>About</span>
+        </a>
+
+        <a class="nav-item {% if page.url == '/contact/' %}active{% endif %}" href="/contact/">
+          <img class="nav-icon" src="/assets/icons/contact.svg" alt="">
+          <span>Contact</span>
+        </a>
+
+        <a class="nav-item {% if page.url == '/noteworthy/' %}active{% endif %}" href="/noteworthy/">
+          <img class="nav-icon" src="/assets/icons/note-worthy.svg" alt="">
+          <span>Note Worthy</span>
+        </a>
+
+      </nav>
+    </aside>
+
+    <!-- Main content area -->
+    <main class="main">
+      {{ content | safe }}
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="right-sidebar">
+
+      <div class="search-bar">
+        <div class="search-input-wrap search-trigger" id="search-trigger" role="button" tabindex="0" aria-label="Open search">
+          <img src="/assets/icons/search.svg" alt="" width="20" height="20">
+          <span class="search-placeholder">Search stuff</span>
+        </div>
+      </div>
+
+      {% if widgetConfig == 'about' %}
+
+        <div class="widget">
+          <div class="widget-header">Get In Touch</div>
+          <div class="widget-body">
+            <p class="bio-text">Call or drop me an email. No feeds, no algorithms... just a direct line.</p>
+          </div>
+          <div class="widget-footer"><a href="/contact/">Contact Me</a></div>
+        </div>
+
+        <div class="widget">
+          <div class="widget-header">Note Worthy</div>
+          <div class="widget-body widget-body--compact">
+            {% for item in noteworthy | limit(3) %}
+            <a class="bookmark-item{% if loop.last %} bookmark-item--last{% endif %}" href="{{ item.href }}" target="_blank" rel="noopener">
+              <div class="bookmark-thumb bookmark-thumb--img">
+                <img src="https://www.google.com/s2/favicons?domain={{ item.faviconDomain }}&sz=64" alt="{{ item.name }}" onerror="this.style.display='none';this.parentNode.textContent='{{ item.fallback }}'">
+              </div>
+              <div class="bookmark-info">
+                <div class="bookmark-title-row">
+                  <span class="bookmark-name">{{ item.name }}</span>
+                  <div class="tag tag--sm"><span>{{ item.tag | upper }}</span></div>
+                </div>
+                <span class="bookmark-url">{{ item.domain }}</span>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+          <div class="widget-footer"><a href="/noteworthy/">See More</a></div>
+        </div>
+
+      {% elif widgetConfig == 'noteworthy' %}
+
+        <div class="widget">
+          <div class="widget-body">
+            <div class="avatar-about-section">
+              <div class="bookmark-thumb bookmark-thumb--img">
+                <img src="/assets/images/profile-pic-2.jpg" alt="Brandon D'Adam">
+              </div>
+              <div class="bookmark-info">
+                <div class="bookmark-title-row">
+                  <span class="my-name">Brandon D'Adam</span>
+                </div>
+                <span class="bookmark-url">Mood: Inspired</span>
+              </div>
+            </div>
+            <p class="bio-text">Professional designer, amateur builder, skater, and creative. I like old stuff, weird stuff, punk/emo music, and making things that still feel human.</p>
+          </div>
+          <div class="widget-footer"><a href="/about/">More About Me</a></div>
+        </div>
+
+        <div class="widget">
+          <div class="widget-header">Get In Touch</div>
+          <div class="widget-body">
+            <p class="bio-text">Call or drop me an email. No feeds, no algorithms... just a direct line.</p>
+          </div>
+          <div class="widget-footer"><a href="/contact/">Contact Me</a></div>
+        </div>
+
+      {% else %}
+
+        <div class="widget">
+          <div class="widget-body">
+            <div class="avatar-about-section">
+              <div class="bookmark-thumb bookmark-thumb--img">
+                <img src="/assets/images/profile-pic-2.jpg" alt="Brandon D'Adam">
+              </div>
+              <div class="bookmark-info">
+                <div class="bookmark-title-row">
+                  <span class="my-name">Brandon D'Adam</span>
+                </div>
+                <span class="bookmark-url">Mood: Inspired</span>
+              </div>
+            </div>
+            <p class="bio-text">Professional designer, amateur builder, skater, and creative. I like old stuff, weird stuff, punk/emo music, and making things that still feel human.</p>
+          </div>
+          <div class="widget-footer"><a href="/about/">More About Me</a></div>
+        </div>
+
+        <div class="widget">
+          <div class="widget-header">Note Worthy</div>
+          <div class="widget-body widget-body--compact">
+            {% for item in noteworthy | limit(3) %}
+            <a class="bookmark-item{% if loop.last %} bookmark-item--last{% endif %}" href="{{ item.href }}" target="_blank" rel="noopener">
+              <div class="bookmark-thumb bookmark-thumb--img">
+                <img src="https://www.google.com/s2/favicons?domain={{ item.faviconDomain }}&sz=64" alt="{{ item.name }}" onerror="this.style.display='none';this.parentNode.textContent='{{ item.fallback }}'">
+              </div>
+              <div class="bookmark-info">
+                <div class="bookmark-title-row">
+                  <span class="bookmark-name">{{ item.name }}</span>
+                  <div class="tag tag--sm"><span>{{ item.tag | upper }}</span></div>
+                </div>
+                <span class="bookmark-url">{{ item.domain }}</span>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+          <div class="widget-footer"><a href="/noteworthy/">See More</a></div>
+        </div>
+
+      {% endif %}
+
+      {% if song %}
+        <div class="widget widget--song">
+          <div class="profile-song-player">
+            <iframe
+              src="https://open.spotify.com/embed/track/{{ song.id }}?utm_source=generator&theme=0"
+              width="100%"
+              height="80"
+              frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="sidebar-footer">
+        <span>Brandon D'Adam. All rights reserved. © 2026</span>
+        <a href="/terms/">Terms of Service</a>
+        <a href="/privacy/">Privacy Policy</a>
+      </div>
+
+    </aside>
+  </div>
+
+  <div class="search-overlay" id="search-overlay" hidden role="dialog" aria-modal="true" aria-label="Search">
+    <div class="search-overlay-panel">
+      <div class="search-overlay-bar">
+        <img src="/assets/icons/search.svg" alt="" width="20" height="20" aria-hidden="true">
+        <input class="search-overlay-input" type="text" placeholder="Search stuff" autocomplete="off" spellcheck="false">
+        <button class="search-overlay-close-btn" aria-label="Close search">
+          <img src="/assets/icons/close.svg" alt="" width="20" height="20" aria-hidden="true">
+        </button>
+      </div>
+      <div class="search-overlay-results"></div>
+    </div>
+  </div>
+
+  <div class="img-overlay" id="img-overlay" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+    <img class="img-overlay-img" src="" alt="">
+    <button class="img-overlay-close" aria-label="Close image viewer">
+      <img src="/assets/icons/close.svg" alt="" width="48" height="48" aria-hidden="true">
+    </button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+  <script src="/assets/animations.js"></script>
+  <script src="/assets/main.js"></script>
+</body>
+</html>

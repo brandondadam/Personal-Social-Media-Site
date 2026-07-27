@@ -1,0 +1,90 @@
+[
+  {
+    "name": "新工芸",
+    "href": "https://www.shinkogeisha.com/",
+    "domain": "shinkogeisha.com",
+    "faviconDomain": "shinkogeisha.com",
+    "tag": "Inspiration",
+    "fallback": "新"
+  },
+  {
+    "name": "Claude Code",
+    "href": "https://claude.ai/code",
+    "domain": "claude.ai/code",
+    "faviconDomain": "claude.ai",
+    "tag": "Tools",
+    "fallback": "C"
+  },
+  {
+    "name": "Departure Mono",
+    "href": "https://departuremono.com/",
+    "domain": "departuremono.com",
+    "faviconDomain": "departuremono.com",
+    "tag": "Typeface",
+    "fallback": "Aa"
+  },
+  {
+    "name": "Are.na",
+    "href": "https://www.are.na/",
+    "domain": "are.na",
+    "faviconDomain": "are.na",
+    "tag": "Research",
+    "fallback": "∞"
+  },
+  {
+    "name": "iA Presenter",
+    "href": "https://ia.net/presenter",
+    "domain": "ia.net/presenter",
+    "faviconDomain": "ia.net",
+    "tag": "Tools",
+    "fallback": "iA"
+  },
+  {
+    "name": "Obsidian",
+    "href": "https://obsidian.md/",
+    "domain": "obsidian.md",
+    "faviconDomain": "obsidian.md",
+    "tag": "Tools",
+    "fallback": "O"
+  },
+  {
+    "name": "Fonts In Use",
+    "href": "https://fontsinuse.com/",
+    "domain": "fontsinuse.com",
+    "faviconDomain": "fontsinuse.com",
+    "tag": "Design",
+    "fallback": "Ff"
+  },
+  {
+    "name": "Brutalist Websites",
+    "href": "https://brutalistwebsites.com/",
+    "domain": "brutalistwebsites.com",
+    "faviconDomain": "brutalistwebsites.com",
+    "tag": "Design",
+    "fallback": "B"
+  },
+  {
+    "name": "Stripe Press",
+    "href": "https://press.stripe.com/",
+    "domain": "press.stripe.com",
+    "faviconDomain": "press.stripe.com",
+    "tag": "Reading",
+    "fallback": "S"
+  },
+  {
+    "name": "Monoskop",
+    "href": "https://monoskop.org/",
+    "domain": "monoskop.org",
+    "faviconDomain": "monoskop.org",
+    "tag": "Research",
+    "fallback": "M"
+  },
+  {
+    "name": "Figma",
+    "href": "https://figma.com/",
+    "domain": "figma.com",
+    "faviconDomain": "figma.com",
+    "tag": "Tools",
+    "fallback": "F"
+  }
+]

@@ -1,0 +1,71 @@
+---
+layout: base.njk
+title: Home
+---
+<div class="feed-header">
+<div class="feed-header-section">
+  <h1 class="feed-title">Home</h1>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" data-tab="all">
+    <div class="tab-inner"><span>Posts</span></div>
+  </div>
+  <div class="tab" data-tab="professional">
+    <div class="tab-inner"><span>Professional</span></div>
+  </div>
+  <div class="tab" data-tab="personal">
+    <div class="tab-inner"><span>Personal</span></div>
+  </div>
+  <div class="tab" data-tab="random">
+    <div class="tab-inner"><span>Random</span></div>
+  </div>
+</div>
+</div>
+
+<div id="feed">
+  {% for post in collections.posts | reverse %}
+  <article class="post-card"
+           data-id="{{ post.fileSlug }}"
+           data-likes="{{ post.data.likes | default(0) }}"
+           data-replies="{{ post.data.replies | default(0) }}"
+           data-category="{{ post.data.category or 'all' }}"
+           onclick="window.location='{{ post.url }}'">
+
+    <div class="post-meta">
+      {% set displayTags = post.data.tags | reject("equalsto", "posts") | list %}
+      {% for tag in displayTags %}
+        <div class="tag"><span>{{ tag | upper }}</span></div>
+      {% endfor %}
+      <span class="post-date">{{ post.date | shortDate }}</span>
+    </div>
+
+    <div class="post-content">
+      <div class="post-title">{{ post.data.title }}</div>
+      <div class="post-body">{{ post.data.excerpt }}</div>
+    </div>
+
+    {% if post.data.images and post.data.images.length %}
+      <img class="post-image" src="{{ post.data.images[0] }}" alt="" loading="lazy">
+    {% elif post.data.image %}
+      <img class="post-image" src="{{ post.data.image }}" alt="" loading="lazy">
+    {% endif %}
+
+    <div class="post-actions">
+      <div class="action" onclick="event.stopPropagation(); handleAction(event, '{{ post.fileSlug }}', 'reply')">
+        <span class="action-icon action-icon--comment"></span>
+        <span data-field="replies">{{ post.data.replies | default(0) }}</span>
+      </div>
+      <div class="action liked-action" onclick="event.stopPropagation(); handleAction(event, '{{ post.fileSlug }}', 'like')">
+        <span class="action-icon action-icon--heart"></span>
+        <span data-field="likes">{{ post.data.likes | default(0) }}</span>
+      </div>
+<div class="action" onclick="event.stopPropagation()">
+        <span class="action-icon action-icon--share"></span>
+        <span>{{ post.data.likes | default(0) }}</span>
+      </div>
+    </div>
+
+  </article>
+  {% endfor %}
+</div>

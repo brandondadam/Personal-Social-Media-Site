@@ -1,0 +1,37 @@
+---
+layout: base.njk
+title: Note Worthy
+widgetConfig: noteworthy
+---
+<div class="feed-header-section feed-header-section--bordered">
+  <h1 class="feed-title">Note Worthy</h1>
+  <div class="filter-wrap">
+    <button class="filter-btn" aria-expanded="false" aria-haspopup="true">
+      <img src="/assets/icons/filter.svg" alt="" width="16" height="16" aria-hidden="true">
+      <span>Filter</span>
+      <div class="tag tag--sm filter-count" hidden><span></span></div>
+    </button>
+    <div class="filter-dropdown" hidden></div>
+  </div>
+</div>
+
+<div class="page-scroll">
+  <div class="noteworthy-container">
+
+    {% for item in noteworthy %}
+    <a class="noteworthy-item" href="{{ item.href }}" target="_blank" rel="noopener" data-category="{{ item.tag | lower }}">
+      <div class="noteworthy-thumb noteworthy-thumb--img">
+        <img src="https://www.google.com/s2/favicons?domain={{ item.faviconDomain }}&sz=64" alt="{{ item.name }}" onerror="this.style.display='none';this.parentNode.textContent='{{ item.fallback }}'">
+      </div>
+      <div class="noteworthy-info">
+        <div class="noteworthy-title-row">
+          <span class="noteworthy-name">{{ item.name }}</span>
+          <div class="tag tag--sm"><span>{{ item.tag }}</span></div>
+        </div>
+        <span class="noteworthy-url">{{ item.domain }}</span>
+      </div>
+    </a>
+    {% endfor %}
+
+  </div>
+</div>
